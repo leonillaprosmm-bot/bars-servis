@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Барс Сервис — Ремонт техники и запчасти</title>
+    <meta name="description" content="Корпоративный сайт компании по ремонту техники с интернет-магазином запчастей. Ремонт смартфонов, телевизоров, компьютеров, стиральных машин, холодильников, варочных панелей.">
+    <meta name="keywords" content="ремонт техники, запчасти, ремонт смартфонов, ремонт телевизоров, ремонт компьютеров, ремонт стиральных машин, ремонт холодильников, ремонт варочных панелей">
+    <meta property="og:title" content="Барс Сервис — Ремонт техники и запчасти">
+    <meta property="og:description" content="Профессиональный ремонт бытовой техники и электроники. Оригинальные запчасти. Проверка статуса заказа онлайн.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bars-service.ru/">
+    <meta property="og:image" content="https://bars-service.ru/og-image.jpg">
+    <link rel="canonical" href="https://bars-service.ru/">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+    <style>
+        /* ===== БАЗОВЫЕ СТИЛИ ===== */
+        :root {
+            --primary: #1a56db;
+            --primary-dark: #1e40af;
+            --primary-light: #e0e7ff;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #f9fafb;
+            --white: #ffffff;
+            --border: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: all 0.25s ease;
+            --container: 1200px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img { max-width: 100%; height: auto; display: block; }
+
+        a { color: var(--primary); text-decoration: none; transition: var(--transition); }
+        a:hover { color: var(--primary-dark); }
+
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            line-height: 1.2;
+        }
+        .btn-primary { background: var(--primary); color: var(--white); }
+        .btn-primary:hover { background: var(--primary-dark); color: var(--white); transform: translateY(-2px); box-shadow: var(--shadow); }
+        .btn-accent { background: var(--accent); color: var(--white); }
+        .btn-accent:hover { background: #d97706; color: var(--white); transform: translateY(-2px); }
+        .btn-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+        .btn-outline:hover { background: var(--primary); color: var(--white); }
+        .btn-sm { padding: 8px 16px; font-size: 14px; }
+        .btn-block { width: 100%; }
+
+        .section { padding: 80px 0; }
+        .section-title {
+            font-size: 36px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 18px;
+            margin-bottom: 48px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== ХЕДЕР ===== */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--white);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            max-width: var(--container);
+            margin: 0 auto;
+            gap: 20px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .logo span { font-size: 28px; }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+        .nav a {
+            color: var(--text);
+            font-weight: 500;
+            font-size: 15px;
+            position: relative;
+        }
+        .nav a:hover { color: var(--primary); }
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+        .nav a:hover::after { width: 100%; }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .contact-phone {
+            font-weight: 700;
+            color: var(--text);
+            white-space: nowrap;
+            font-size: 15px;
+        }
+        .contact-phone:hover { color: var(--primary); }
+
+        .cart-btn {
+            position: relative;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            padding: 4px;
+            transition: var(--transition);
+        }
+        .cart-btn:hover { transform: scale(1.1); }
+        .cart-count {
+            position: absolute;
+            top: -6px;
+            right: -8px;
+            background: var(--danger);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 700;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .burger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        /* ===== МОБИЛЬНОЕ МЕНЮ ===== */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+            z-index: 2000;
+            transition: right 0.3s ease;
+            padding: 80px 24px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .mobile-menu.open { right: 0; }
+        .mobile-menu a {
+            display: block;
+            padding: 14px 16px;
+            color: var(--text);
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+        .mobile-menu a:hover { background: var(--primary-light); color: var(--primary); }
+        .mobile-menu .close-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 32px;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        .overlay.open { opacity: 1; visibility: visible; }
+
+        /* ===== ГЕРОЙ ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 19px;
+            opacity: 0.9;
+            margin-bottom: 32px;
+            max-width: 500px;
+        }
+        .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+        .hero-stat { text-align: left; }
+        .hero-stat strong { display: block; font-size: 32px; font-weight: 800; }
+        .hero-stat span { font-size: 14px; opacity: 0.85; }
+
+        .hero-visual {
+            background: rgba(255,255,255,0.1);
+            border-radius: var(--radius);
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .hero-visual h3 { font-size: 20px; margin-bottom: 20px; }
+        .status-demo {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            color: var(--text);
+        }
+        .status-demo .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .badge-green { background: #d1fae5; color: #065f46; }
+        .badge-yellow { background: #fef3c7; color: #92400e; }
+        .badge-red { background: #fee2e2; color: #991b1b; }
+
+        /* ===== УСЛУГИ ===== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .service-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+        }
+        .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--primary-light); }
+        .service-icon { font-size: 40px; margin-bottom: 16px; }
+        .service-card h3 { font-size: 20px; margin-bottom: 8px; }
+        .service-card p { color: var(--text-light); font-size: 15px; margin-bottom: 16px; flex-grow: 1; }
+        .service-price { font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 16px; }
+        .service-price span { font-size: 14px; font-weight: 400; color: var(--text-light); }
+
+        /* ===== МАГАЗИН ===== */
+        .shop-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+        .filter-btn {
+            padding: 8px 18px;
+            border: 2px solid var(--border);
+            background: var(--white);
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: var(--transition);
+            color: var(--text-light);
+        }
+        .filter-btn:hover, .filter-btn.active {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: var(--white);
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 24px;
+        }
+        .product-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .product-img {
+            height: 180px;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: var(--primary);
+        }
+        .product-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .product-category { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); margin-bottom: 6px; }
+        .product-card h3 { font-size: 17px; margin-bottom: 8px; }
+        .product-desc { font-size: 14px; color: var(--text-light); margin-bottom: 12px; flex-grow: 1; }
+        .product-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+        .product-price { font-size: 20px; font-weight: 800; color: var(--primary); }
+        .product-stock { font-size: 13px; color: var(--success); font-weight: 600; }
+
+        /* ===== ВИДЕО ===== */
+        .video-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .video-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+        .video-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .video-thumb {
+            position: relative;
+            padding-top: 56.25%;
+            background: #000;
+            cursor: pointer;
+        }
+        .video-thumb iframe, .video-thumb .video-placeholder {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .video-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1f2937, #374151);
+            color: var(--white);
+            font-size: 48px;
+        }
+        .video-duration {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(0,0,0,0.8);
+            color: var(--white);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .video-body { padding: 16px 20px 20px; }
+        .video-body h3 { font-size: 16px; margin-bottom: 8px; line-height: 1.4; }
+        .video-meta { font-size: 13px; color: var(--text-light); display: flex; gap: 12px; }
+
+        /* ===== ПРОВЕРКА СТАТУСА ===== */
+        .track-section {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: var(--white);
+        }
+        .track-section .section-title { color: var(--white); }
+        .track-section .section-subtitle { color: rgba(255,255,255,0.7); }
+        .track-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: var(--radius);
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+        .track-input-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .track-input-group input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        .track-input-group input::placeholder { color: rgba(255,255,255,0.5); }
+        .track-input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255,255,255,0.15);
+        }
+        .track-result {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: var(--radius-sm);
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
+            display: none;
+        }
+        .track-result.show { display: block; animation: fadeIn 0.4s ease; }
+        .track-result .status-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .track-result .status-badge {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .track-result .status-desc { font-size: 15px; opacity: 0.9; margin-bottom: 8px; }
+        .track-result .status-date { font-size: 13px; opacity: 0.6; }
+        .track-error { color: #fca5a5; font-size: 14px; margin-top: 8px; display: none; }
+        .track-error.show { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== КОНТАКТЫ ===== */
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+        .contact-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            align-items: flex-start;
+        }
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-light);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+        .contact-item h4 { font-size: 16px; margin-bottom: 4px; }
+        .contact-item p, .contact-item a { color: var(--text-light); font-size: 15px; }
+
+        .contact-form {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 36px;
+            box-shadow: var(--shadow);
+        }
+        .form-group { margin-bottom: 18px; }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+            font-family: inherit;
+            transition: var(--transition);
+            background: var(--white);
+            color: var(--text);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+        .form-group textarea { resize: vertical; min-height: 100px; }
+        .form-hint { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+
+        /* ===== ФУТЕР ===== */
+        .footer {
+            background: #111827;
+            color: #9ca3af;
+            padding: 60px 0 24px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer h4 { color: var(--white); font-size: 16px; margin-bottom: 16px; }
+        .footer ul { list-style: none; }
+        .footer ul li { margin-bottom: 10px; }
+        .footer a { color: #9ca3af; font-size: 14px; }
+        .footer a:hover { color: var(--white); }
+        .footer-bottom {
+            border-top: 1px solid #1f2937;
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 13px;
+        }
+
+        /* ===== КОРЗИНА (SIDEBAR) ===== */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 400px;
+            max-width: 100%;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+            z-index: 2000;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .cart-sidebar.open { right: 0; }
+        .cart-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+        }
+        .cart-header h3 { font-size: 20px; }
+        .cart-close {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--text-light);
+            line-height: 1;
+        }
+        .cart-items { flex: 1; overflow-y: auto; padding: 16px 24px; }
+        .cart-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            align-items: center;
+        }
+        .cart-item-img {
+            width: 56px;
+            height: 56px;
+            background: var(--primary-light);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        .cart-item-info { flex: 1; }
+        .cart-item-info h4 { font-size: 14px; margin-bottom: 4px; }
+        .cart-item-info .price { font-size: 14px; font-weight: 700; color: var(--primary); }
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .cart-item-qty button {
+            width: 28px;
+            height: 28px;
+            border: 1px solid var(--border);
+            background: var(--white);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        .cart-item-qty button:hover { background: var(--primary-light); border-color: var(--primary); }
+        .cart-item-qty span { min-width: 20px; text-align: center; font-weight: 600; font-size: 14px; }
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--danger);
+            cursor: pointer;
+            font-size: 18px;
+            padding: 4px;
+        }
+        .cart-footer {
+            padding: 20px 24px;
+            border-top: 1px solid var(--border);
+            background: var(--bg);
+        }
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .cart-empty { text-align: center; padding: 40px 0; color: var(--text-light); }
+        .cart-empty .icon { font-size: 48px; margin-bottom: 12px; }
+
+        /* ===== МОДАЛЬНОЕ ОКНО ЗАЯВКИ ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+        }
+        .modal-overlay.open { display: flex; }
+        .modal {
+            background: var(--white);
+            border-radius: var(--radius);
+            max-width: 520px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 36px;
+            position: relative;
+            animation: modalIn 0.3s ease;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.95) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--text-light);
+            line-height: 1;
+        }
+        .modal h3 { font-size: 24px; margin-bottom: 8px; }
+        .modal p { color: var(--text-light); margin-bottom: 24px; font-size: 15px; }
+
+        /* ===== УВЕДОМЛЕНИЯ ===== */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--text);
+            color: var(--white);
+            padding: 14px 24px;
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+            font-weight: 500;
+            z-index: 4000;
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+        .toast.success { background: var(--success); }
+        .toast.error { background: var(--danger); }
+
+        /* ===== АДАПТИВ ===== */
+        @media (max-width: 1024px) {
+            .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+            .hero h1 { font-size: 38px; }
+            .hero-visual { max-width: 500px; }
+            .contacts-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav { display: none; }
+            .burger { display: block; }
+            .contact-phone { display: none; }
+            .section { padding: 60px 0; }
+            .section-title { font-size: 28px; }
+            .hero { padding: 60px 0; }
+            .hero h1 { font-size: 30px; }
+            .hero p { font-size: 16px; }
+            .hero-stats { grid-template-columns: 1fr; gap: 16px; }
+            .products-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+            .video-grid { grid-template-columns: 1fr; }
+            .track-box { padding: 24px; }
+            .track-input-group { flex-direction: column; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .cart-sidebar { width: 100%; right: -100%; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 26px; }
+            .hero-buttons { flex-direction: column; }
+            .hero-buttons .btn { width: 100%; }
+            .products-grid { grid-template-columns: 1fr; }
+            .modal { padding: 24px; }
+        }
+
+        /* ===== УТИЛИТЫ ===== */
+        .text-center { text-align: center; }
+        .mt-4 { margin-top: 16px; }
+        .mt-6 { margin-top: 24px; }
+        .mb-4 { margin-bottom: 16px; }
+        .hidden { display: none !important; }
+
+        /* ===== ЗАГРУЗЧИК ===== */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: var(--white);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ===== КАСТОМНЫЙ СКРОЛЛ ===== */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body>
+
+<!-- ===== ШАПКА ===== -->
+<header class="header">
+    <div class="header-inner">
+        <a href="#" class="logo" onclick="scrollToTop(event)">
+            <span>🛠️</span> Барс Сервис
+        </a>
+        <nav>
+            <ul class="nav">
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#shop">Магазин</a></li>
+                <li><a href="#video">Видео</a></li>
+                <li><a href="#track">Проверка заказа</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <a href="tel:+78001234567" class="contact-phone">📞 +7 (800) 123-45-67</a>
+            <button class="cart-btn" onclick="openCart()" aria-label="Корзина">
+                🛒 <span class="cart-count" id="cartCount">0</span>
+            </button>
+            <button class="burger" onclick="toggleMobileMenu()" aria-label="Меню">☰</button>
+        </div>
+    </div>
+</header>
+
+<!-- ===== МОБИЛЬНОЕ МЕНЮ ===== -->
+<div class="overlay" id="overlay" onclick="closeAll()"></div>
+<div class="mobile-menu" id="mobileMenu">
+    <button class="close-btn" onclick="closeAll()" aria-label="Закрыть">×</button>
+    <a href="#services" onclick="closeAll()">Услуги</a>
+    <a href="#shop" onclick="closeAll()">Магазин</a>
+    <a href="#video" onclick="closeAll()">Видео</a>
+    <a href="#track" onclick="closeAll()">Проверка заказа</a>
+    <a href="#contacts" onclick="closeAll()">Контакты</a>
+    <a href="tel:+78001234567" style="color:var(--primary);font-weight:700;">📞 +7 (800) 123-45-67</a>
+</div>
+
+<!-- ===== ГЕРОЙ ===== -->
+<section class="hero" id="home">
+    <div class="container hero-inner">
+        <div>
+            <h1>Ремонт техники и оригинальные запчасти</h1>
+            <p>Профессиональный ремонт смартфонов, телевизоров, компьютеров, стиральных машин, холодильников и варочных панелей. Гарантия на все работы. Проверка статуса заказа онлайн.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-accent" onclick="openRequestModal()">🔧 Заказать ремонт</button>
+                <a href="#shop" class="btn btn-outline" style="background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.4);">🛒 В магазин</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <strong>10+</strong>
+                    <span>лет на рынке</span>
+                </div>
+                <div class="hero-stat">
+                    <strong>5000+</strong>
+                    <span>довольных клиентов</span>
+                </div>
+                <div class="hero-stat">
+                    <strong>24/7</strong>
+                    <span>приём заявок</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <h3>📦 Проверка статуса заказа</h3>
+            <div class="status-demo">
+                <div class="badge badge-green">✅ Готов к выдаче</div>
+                <p style="font-size:14px;color:var(--text-light);margin-bottom:8px;">Заказ №12345 — Ремонт iPhone 13</p>
+                <p style="font-size:13px;color:var(--text-light);">Обновлено: 06.10.2026 14:30</p>
+            </div>
+            <button class="btn btn-primary btn-block mt-4" onclick="document.getElementById('track').scrollIntoView({behavior:'smooth'})">
+                Проверить свой заказ →
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== УСЛУГИ ===== -->
+<section class="section" id="services">
+    <div class="container">
+        <h2 class="section-title">Наши услуги</h2>
+        <p class="section-subtitle">Профессиональный ремонт бытовой техники и электроники с гарантией до 12 месяцев</p>
+        <div class="services-grid" id="servicesGrid">
+            <!-- Заполняется JS -->
+        </div>
+    </div>
+</section>
+
+<!-- ===== МАГАЗИН ===== -->
+<section class="section" id="shop" style="background: var(--white);">
+    <div class="container">
+        <h2 class="section-title">Магазин запчастей</h2>
+        <p class="section-subtitle">Оригинальные комплектующие и аксессуары для ремонта техники</p>
+        <div class="shop-filters" id="shopFilters">
+            <button class="filter-btn active" data-category="all">Все</button>
+            <button class="filter-btn" data-category="Смартфоны">Смартфоны</button>
+            <button class="filter-btn" data-category="Телевизоры">Телевизоры</button>
+            <button class="filter-btn" data-category="Компьютеры">Компьютеры</button>
+            <button class="filter-btn" data-category="Стиральные машины">Стиральные машины</button>
+            <button class="filter-btn" data-category="Холодильники">Холодильники</button>
+            <button class="filter-btn" data-category="Варочные панели">Варочные панели</button>
+        </div>
+        <div class="products-grid" id="productsGrid">
+            <!-- Заполняется JS -->
+        </div>
+    </div>
+</section>
+
+<!-- ===== ВИДЕО ===== -->
+<section class="section" id="video">
+    <div class="container">
+        <h2 class="section-title">Видео о ремонте</h2>
+        <p class="section-subtitle">Смотрите наши мастер-классы, обзоры и примеры выполненных работ</p>
+        <div class="video-filters" id="videoFilters">
+            <button class="filter-btn active" data-tag="all">Все</button>
+            <button class="filter-btn" data-tag="Ремонт">Ремонт</button>
+            <button class="filter-btn" data-tag="Обзор">Обзор</button>
+            <button class="filter-btn" data-tag="Инструкция">Инструкция</button>
+        </div>
+        <div class="video-grid" id="videoGrid">
+            <!-- Заполняется JS -->
+        </div>
+    </div>
+</section>
+
+<!-- ===== ПРОВЕРКА СТАТУСА ===== -->
+<section class="section track-section" id="track">
+    <div class="container">
+        <h2 class="section-title">Проверка статуса заказа</h2>
+        <p class="section-subtitle">Введите номер заказа, чтобы узнать текущий статус ремонта</p>
+        <div class="track-box">
+            <div class="track-input-group">
+                <input type="text" id="orderInput" placeholder="Введите номер заказа (например, 12345)" maxlength="20" autocomplete="off">
+                <button class="btn btn-primary" onclick="checkOrderStatus()" id="checkStatusBtn">
+                    Проверить статус
+                </button>
+            </div>
+            <div class="track-result" id="trackResult"></div>
+            <div class="track-error" id="trackError"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== КОНТАКТЫ ===== -->
+<section class="section" id="contacts" style="background: var(--white);">
+    <div class="container">
+        <h2 class="section-title">Контакты</h2>
+        <p class="section-subtitle">Свяжитесь с нами удобным способом или оставьте заявку</p>
+        <div class="contacts-grid">
+            <div>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div>
+                        <h4>Телефон</h4>
+                        <a href="tel:+78001234567">+7 (800) 123-45-67</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div>
+                        <h4>Email</h4>
+                        <a href="mailto:info@bars-service.ru">info@bars-service.ru</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <h4>Адрес</h4>
+                        <p>г. Москва, ул. Примерная, д. 15, офис 304</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🕐</div>
+                    <div>
+                        <h4>Режим работы</h4>
+                        <p>Пн–Пт: 9:00–20:00<br>Сб–Вс: 10:00–18:00</p>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form" onsubmit="submitContactForm(event)">
+                <h3 style="margin-bottom:20px;">Оставить заявку</h3>
+                <div class="form-group">
+                    <label for="contactName">Ваше имя *</label>
+                    <input type="text" id="contactName" name="name" required placeholder="Иван Иванов">
+                </div>
+                <div class="form-group">
+                    <label for="contactPhone">Телефон *</label>
+                    <input type="tel" id="contactPhone" name="phone" required placeholder="+7 (___) ___-__-__">
+                </div>
+                <div class="form-group">
+                    <label for="contactEmail">Email</label>
+                    <input type="email" id="contactEmail" name="email" placeholder="ivan@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="contactMessage">Сообщение</label>
+                    <textarea id="contactMessage" name="message" placeholder="Опишите вашу проблему или вопрос..."></textarea>
+                </div>
+                <div class="form-group" style="display:flex;align-items:flex-start;gap:8px;">
+                    <input type="checkbox" id="contactAgree" required style="width:auto;margin-top:4px;">
+                    <label for="contactAgree" style="font-size:13px;font-weight:400;color:var(--text-light);">Я согласен на обработку персональных данных</label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ФУТЕР ===== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div class="logo" style="color:#fff;margin-bottom:16px;">
+                    <span>🛠️</span> Барс Сервис
+                </div>
+                <p style="font-size:14px;line-height:1.7;">Профессиональный ремонт бытовой техники и электроники. Оригинальные запчасти. Гарантия качества.</p>
+            </div>
+            <div>
+                <h4>Услуги</h4>
+                <ul>
+                    <li><a href="#services">Ремонт смартфонов</a></li>
+                    <li><a href="#services">Ремонт телевизоров</a></li>
+                    <li><a href="#services">Ремонт компьютеров</a></li>
+                    <li><a href="#services">Ремонт стиральных машин</a></li>
+                    <li><a href="#services">Ремонт холодильников</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Магазин</h4>
+                <ul>
+                    <li><a href="#shop">Запчасти для смартфонов</a></li>
+                    <li><a href="#shop">Запчасти для ТВ</a></li>
+                    <li><a href="#shop">Комплектующие для ПК</a></li>
+                    <li><a href="#shop">Аксессуары</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Компания</h4>
+                <ul>
+                    <li><a href="#contacts">Контакты</a></li>
+                    <li><a href="#track">Проверка заказа</a></li>
+                    <li><a href="#video">Видео</a></li>
+                    <li><a href="#">Политика конфиденциальности</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Барс Сервис. Все права защищены.</span>
+            <span>ИНН 1234567890 | ОГРН 1234567890123</span>
+        </div>
+    </div>
+</footer>
+
+<!-- ===== КОРЗИНА ===== -->
+<div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <h3>🛒 Корзина</h3>
+        <button class="cart-close" onclick="closeCart()" aria-label="Закрыть">×</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+        <div class="cart-empty">
+            <div class="icon">🛒</div>
+            <p>Корзина пуста</p>
+            <p style="font-size:14px;margin-top:8px;">Добавьте товары из магазина</p>
+        </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+        <div class="cart-total">
+            <span>Итого:</span>
+            <span id="cartTotal">0 ₽</span>
+        </div>
+        <button class="btn btn-primary btn-block" onclick="checkout()">Оформить заказ</button>
+    </div>
+</div>
+
+<!-- ===== МОДАЛЬНОЕ ОКНО ЗАЯВКИ ===== -->
+<div class="modal-overlay" id="requestModal">
+    <div class="modal">
+        <button class="modal-close" onclick="closeRequestModal()" aria-label="Закрыть">×</button>
+        <h3>🔧 Заказать ремонт</h3>
+        <p>Оставьте заявку, и мы свяжемся с вами в течение 15 минут</p>
+        <form onsubmit="submitRequestForm(event)">
+            <div class="form-group">
+                <label for="reqName">Ваше имя *</label>
+                <input type="text" id="reqName" required placeholder="Иван Иванов">
+            </div>
+            <div class="form-group">
+                <label for="reqPhone">Телефон *</label>
+                <input type="tel" id="reqPhone" required placeholder="+7 (___) ___-__-__">
+            </div>
+            <div class="form-group">
+                <label for="reqType">Тип техники *</label>
+                <select id="reqType" required>
+                    <option value="">Выберите тип</option>
+                    <option>Смартфон</option>
+                    <option>Телевизор</option>
+                    <option>Компьютер / ноутбук</option>
+                    <option>Стиральная машина</option>
+                    <option>Холодильник</option>
+                    <option>Варочная панель</option>
+                    <option>Другое</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="reqDesc">Описание проблемы *</label>
+                <textarea id="reqDesc" required placeholder="Опишите, что случилось с техникой..."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="reqFile">Фото техники (необязательно, до 10 МБ)</label>
+                <input type="file" id="reqFile" accept="image/*" onchange="checkFileSize(this)">
+                <div class="form-hint">Прикрепите фото для более точной диагностики</div>
+            </div>
+            <div class="form-group" style="display:flex;align-items:flex-start;gap:8px;">
+                <input type="checkbox" id="reqAgree" required style="width:auto;margin-top:4px;">
+                <label for="reqAgree" style="font-size:13px;font-weight:400;color:var(--text-light);">Я согласен на обработку персональных данных</label>
+            </div>
+            <button type="submit" class="btn btn-accent btn-block">Отправить заявку</button>
+        </form>
+    </div>
+</div>
+
+<!-- ===== УВЕДОМЛЕНИЕ ===== -->
+<div class="toast" id="toast"></div>
+
+<!-- ===== SCHEMA.ORG ===== -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Барс Сервис",
+    "url": "https://bars-service.ru",
+    "logo": "https://bars-service.ru/logo.png",
+    "description": "Компания по ремонту техники с интернет-магазином запчастей",
+    "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Москва",
+        "streetAddress": "ул. Примерная, д. 15"
+    },
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+7-800-123-45-67",
+        "contactType": "customer service"
+    }
+}
+</script>
+
+<script>
+/* ============================================================
+   ДАННЫЕ (имитация БД / API)
+   ============================================================ */
+const SERVICES = [
+    { id: 1, icon: '📱', name: 'Ремонт смартфонов', desc: 'Замена экранов, аккумуляторов, разъёмов, ремонт после залития', price: 'от 500 ₽' },
+    { id: 2, icon: '📺', name: 'Ремонт телевизоров', desc: 'Замена матриц, подсветки, блоков питания, ремонт плат', price: 'от 1000 ₽' },
+    { id: 3, icon: '💻', name: 'Ремонт компьютеров', desc: 'Диагностика, замена комплектующих, чистка, установка ПО', price: 'от 800 ₽' },
+    { id: 4, icon: '🧺', name: 'Ремонт стиральных машин', desc: 'Замена подшипников, насосов, ТЭНов, ремонт электроники', price: 'от 1200 ₽' },
+    { id: 5, icon: '❄️', name: 'Ремонт холодильников', desc: 'Заправка фреоном, замена компрессоров, ремонт термостатов', price: 'от 1500 ₽' },
+    { id: 6, icon: '🔥', name: 'Ремонт варочных панелей', desc: 'Замена стекла, нагревательных элементов, ремонт сенсоров', price: 'от 1000 ₽' }
+];
+
+const PRODUCTS = [
+    { id: 1, name: 'Экран iPhone 13', category: 'Смартфоны', price: 8900, stock: 'В наличии', icon: '📱', desc: 'Оригинальный OLED-дисплей' },
+    { id: 2, name: 'Аккумулятор Samsung S21', category: 'Смартфоны', price: 3200, stock: 'В наличии', icon: '🔋', desc: 'Ёмкость 4000 мАч' },
+    { id: 3, name: 'Матрица LG 55"', category: 'Телевизоры', price: 25000, stock: 'Под заказ', icon: '📺', desc: '4K UHD, 55 дюймов' },
+    { id: 4, name: 'Блок питания ТВ', category: 'Телевизоры', price: 4500, stock: 'В наличии', icon: '🔌', desc: 'Универсальный, 100 Вт' },
+    { id: 5, name: 'SSD 512 ГБ', category: 'Компьютеры', price: 5800, stock: 'В наличии', icon: '💾', desc: 'NVMe M.2, скорость 3500 МБ/с' },
+    { id: 6, name: 'Оперативная память 16 ГБ', category: 'Компьютеры', price: 4200, stock: 'В наличии', icon: '🧠', desc: 'DDR4, 3200 МГц' },
+    { id: 7, name: 'Подшипник для стиральной машины', category: 'Стиральные машины', price: 1800, stock: 'В наличии', icon: '⚙️', desc: 'Универсальный, 6205' },
+    { id: 8, name: 'Насос для стиральной машины', category: 'Стиральные машины', price: 2200, stock: 'В наличии', icon: '🔧', desc: 'Сливной, 40 Вт' },
+    { id: 9, name: 'Компрессор для холодильника', category: 'Холодильники', price: 7500, stock: 'Под заказ', icon: '❄️', desc: 'Атлант, 140 Вт' },
+    { id: 10, name: 'Термостат для холодильника', category: 'Холодильники', price: 1500, stock: 'В наличии', icon: '🌡️', desc: 'Универсальный' },
+    { id: 11, name: 'Стекло для варочной панели', category: 'Варочные панели', price: 3800, stock: 'В наличии', icon: '🔥', desc: 'Закалённое, 60x60 см' },
+    { id: 12, name: 'Нагревательный элемент', category: 'Варочные панели', price: 2100, stock: 'В наличии', icon: '♨️', desc: 'Для индукционных панелей' }
+];
+
+const VIDEOS = [
+    { id: 'dQw4w9WgXcQ', title: 'Ремонт iPhone 13: замена экрана', date: '2026-09-15', duration: '12:34', tags: ['Ремонт', 'Инструкция'], thumb: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg' },
+    { id: 'dQw4w9WgXcQ', title: 'Обзор нового оборудования для пайки', date: '2026-09-10', duration: '08:20', tags: ['Обзор'], thumb: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg' },
+    { id: 'dQw4w9WgXcQ', title: 'Как заменить подшипник в стиральной машине', date: '2026-09-05', duration: '15:45', tags: ['Ремонт', 'Инструкция'], thumb: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg' },
+    { id: 'dQw4w9WgXcQ', title: 'Диагностика холодильника: основные неисправности', date: '2026-08-28', duration: '10:10', tags: ['Ремонт'], thumb: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg' },
+    { id: 'dQw4w9WgXcQ', title: 'Обзор варочных панелей 2026 года', date: '2026-08-20', duration: '07:55', tags: ['Обзор'], thumb: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg' },
+    { id: 'dQw4w9WgXcQ', title: 'Инструкция: чистка ноутбука от пыли', date: '2026-08-15', duration: '09:30', tags: ['Инструкция'], thumb: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg' }
+];
+
+/* ============================================================
+   СОСТОЯНИЕ
+   ============================================================ */
+let cart = [];
+let currentShopFilter = 'all';
+let currentVideoFilter = 'all';
+
+/* ============================================================
+   ИНИЦИАЛИЗАЦИЯ
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+    renderServices();
+    renderProducts();
+    renderVideos();
+    setupFilters();
+    loadCartFromStorage();
+    updateCartUI();
+});
+
+/* ============================================================
+   РЕНДЕР УСЛУГ
+   ============================================================ */
+function renderServices() {
+    const grid = document.getElementById('servicesGrid');
+    grid.innerHTML = SERVICES.map(s => `
+        <div class="service-card">
+            <div class="service-icon">${s.icon}</div>
+            <h3>${s.name}</h3>
+            <p>${s.desc}</p>
+            <div class="service-price">${s.price} <span>/ работа</span></div>
+            <button class="btn btn-primary btn-sm" onclick="openRequestModal('${s.name}')">Заказать ремонт</button>
+        </div>
+    `).join('');
+}
+
+/* ============================================================
+   РЕНДЕР ТОВАРОВ
+   ============================================================ */
+function renderProducts() {
+    const grid = document.getElementById('productsGrid');
+    let filtered = PRODUCTS;
+    if (currentShopFilter !== 'all') {
+        filtered = PRODUCTS.filter(p => p.category === currentShopFilter);
+    }
+    grid.innerHTML = filtered.map(p => `
+        <div class="product-card">
+            <div class="product-img">${p.icon}</div>
+            <div class="product-body">
+                <div class="product-category">${p.category}</div>
+                <h3>${p.name}</h3>
+                <p class="product-desc">${p.desc}</p>
+                <div class="product-footer">
+                    <div>
+                        <div class="product-price">${p.price.toLocaleString('ru-RU')} ₽</div>
+                        <div class="product-stock">${p.stock}</div>
+                    </div>
+                    <button class="btn btn-primary btn-sm" onclick="addToCart(${p.id})">В корзину</button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+/* ============================================================
+   РЕНДЕР ВИДЕО
+   ============================================================ */
+function renderVideos() {
+    const grid = document.getElementById('videoGrid');
+    let filtered = VIDEOS;
+    if (currentVideoFilter !== 'all') {
+        filtered = VIDEOS.filter(v => v.tags.includes(currentVideoFilter));
+    }
+    grid.innerHTML = filtered.map(v => `
+        <div class="video-card">
+            <div class="video-thumb" onclick="playVideo('${v.id}', this)">
+                <div class="video-placeholder">▶</div>
+                <div class="video-duration">${v.duration}</div>
+            </div>
+            <div class="video-body">
+                <h3>${v.title}</h3>
+                <div class="video-meta">
+                    <span>📅 ${formatDate(v.date)}</span>
+                    <span>🏷️ ${v.tags.join(', ')}</span>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function playVideo(id, element) {
+    element.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+}
+
+function formatDate(dateStr) {
+    const d = new Date(dateStr);
+    return d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
+/* ============================================================
+   ФИЛЬТРЫ
+   ============================================================ */
+function setupFilters() {
+    document.getElementById('shopFilters').addEventListener('click', (e) => {
+        if (e.target.classList.contains('filter-btn')) {
+            document.querySelectorAll('#shopFilters .filter-btn').forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            currentShopFilter = e.target.dataset.category;
+            renderProducts();
+        }
+    });
+
+    document.getElementById('videoFilters').addEventListener('click', (e) => {
+        if (e.target.classList.contains('filter-btn')) {
+            document.querySelectorAll('#videoFilters .filter-btn').forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            currentVideoFilter = e.target.dataset.tag;
+            renderVideos();
+        }
+    });
+}
+
+/* ============================================================
+   КОРЗИНА
+   ============================================================ */
+function addToCart(productId) {
+    const product = PRODUCTS.find(p => p.id === productId);
+    if (!product) return;
+    const existing = cart.find(item => item.id === productId);
+    if (existing) {
+        existing.qty += 1;
+    } else {
+        cart.push({ ...product, qty: 1 });
+    }
+    updateCartUI();
+    saveCartToStorage();
+    showToast(`✅ ${product.name} добавлен в корзину`, 'success');
+}
+
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    updateCartUI();
+    saveCartToStorage();
+}
+
+function changeQty(productId, delta) {
+    const item = cart.find(i => i.id === productId);
+    if (!item) return;
+    item.qty += delta;
+    if (item.qty <= 0) {
+        removeFromCart(productId);
+        return;
+    }
+    updateCartUI();
+    saveCartToStorage();
+}
+
+function updateCartUI() {
+    const count = cart.reduce((sum, item) => sum + item.qty, 0);
+    document.getElementById('cartCount').textContent = count;
+    const itemsContainer = document.getElementById('cartItems');
+    const footer = document.getElementById('cartFooter');
+
+    if (cart.length === 0) {
+        itemsContainer.innerHTML = `
+            <div class="cart-empty">
+                <div class="icon">🛒</div>
+                <p>Корзина пуста</p>
+                <p style="font-size:14px;margin-top:8px;">Добавьте товары из магазина</p>
+            </div>`;
+        footer.style.display = 'none';
+        return;
+    }
+
+    itemsContainer.innerHTML = cart.map(item => `
+        <div class="cart-item">
+            <div class="cart-item-img">${item.icon}</div>
+            <div class="cart-item-info">
+                <h4>${item.name}</h4>
+                <div class="price">${(item.price * item.qty).toLocaleString('ru-RU')} ₽</div>
+            </div>
+            <div class="cart-item-qty">
+                <button onclick="changeQty(${item.id}, -1)">−</button>
+                <span>${item.qty}</span>
+                <button onclick="changeQty(${item.id}, 1)">+</button>
+            </div>
+            <button class="cart-item-remove" onclick="removeFromCart(${item.id})" aria-label="Удалить">🗑️</button>
+        </div>
+    `).join('');
+
+    const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+    document.getElementById('cartTotal').textContent = total.toLocaleString('ru-RU') + ' ₽';
+    footer.style.display = 'block';
+}
+
+function saveCartToStorage() {
+    try { localStorage.setItem('bars_cart', JSON.stringify(cart)); } catch (e) {}
+}
+function loadCartFromStorage() {
+    try {
+        const saved = localStorage.getItem('bars_cart');
+        if (saved) cart = JSON.parse(saved);
+    } catch (e) {}
+}
+
+function openCart() {
+    document.getElementById('cartSidebar').classList.add('open');
+    document.getElementById('overlay').classList.add('open');
+}
+function closeCart() {
+    document.getElementById('cartSidebar').classList.remove('open');
+    document.getElementById('overlay').classList.remove('open');
+}
+
+function checkout() {
+    if (cart.length === 0) return;
+    showToast('📦 Заказ оформлен! Менеджер свяжется с вами.', 'success');
+    cart = [];
+    updateCartUI();
+    saveCartToStorage();
+    closeCart();
+}
+
+/* ============================================================
+   МОБИЛЬНОЕ МЕНЮ
+   ============================================================ */
+function toggleMobileMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+    document.getElementById('overlay').classList.toggle('open');
+}
+function closeAll() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('cartSidebar').classList.remove('open');
+    document.getElementById('overlay').classList.remove('open');
+    closeRequestModal();
+}
+
+/* ============================================================
+   МОДАЛЬНОЕ ОКНО ЗАЯВКИ
+   ============================================================ */
+function openRequestModal(serviceName) {
+    const modal = document.getElementById('requestModal');
+    modal.classList.add('open');
+    if (serviceName) {
+        const select = document.getElementById('reqType');
+        // Пытаемся выбрать соответствующий тип
+        for (let opt of select.options) {
+            if (serviceName.toLowerCase().includes(opt.text.toLowerCase().split(' ')[0])) {
+                select.value = opt.value;
+                break;
+            }
+        }
+    }
+}
+function closeRequestModal() {
+    document.getElementById('requestModal').classList.remove('open');
+}
+document.getElementById('requestModal').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) closeRequestModal();
+});
+
+function checkFileSize(input) {
+    const file = input.files[0];
+    if (file && file.size > 10 * 1024 * 1024) {
+        showToast('❌ Файл слишком большой. Максимум 10 МБ.', 'error');
+        input.value = '';
+    }
+}
+
+function submitRequestForm(event) {
+    event.preventDefault();
+    // Имитация отправки
+    showToast('✅ Заявка отправлена! Мы свяжемся с вами в течение 15 минут.', 'success');
+    closeRequestModal();
+    event.target.reset();
+}
+
+function submitContactForm(event) {
+    event.preventDefault();
+    showToast('✅ Сообщение отправлено! Спасибо за обращение.', 'success');
+    event.target.reset();
+}
+
+/* ============================================================
+   ПРОВЕРКА СТАТУСА ЗАКАЗА (имитация интеграции с CRM)
+   ============================================================ */
+function checkOrderStatus() {
+    const input = document.getElementById('orderInput');
+    const resultDiv = document.getElementById('trackResult');
+    const errorDiv = document.getElementById('trackError');
+    const btn = document.getElementById('checkStatusBtn');
+    const orderNumber = input.value.trim();
+
+    resultDiv.classList.remove('show');
+    errorDiv.classList.remove('show');
+
+    if (!orderNumber) {
+        errorDiv.textContent = '⚠️ Введите номер заказа';
+        errorDiv.classList.add('show');
+        return;
+    }
+
+    // Валидация: буквенно-цифровой, от 3 до 20 символов
+    const regex = /^[A-Za-zА-Яа-я0-9\-]{3,20}$/;
+    if (!regex.test(orderNumber)) {
+        errorDiv.textContent = '⚠️ Некорректный формат номера заказа. Используйте буквы, цифры и дефис (3–20 символов).';
+        errorDiv.classList.add('show');
+        return;
+    }
+
+    // Имитация запроса к CRM API
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> Проверка...';
+
+    setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = 'Проверить статус';
+
+        // Демо-логика: если номер содержит "123" — показываем разные статусы
+        let statusData;
+        const num = orderNumber.replace(/\D/g, '');
+
+        if (orderNumber === '12345' || num.endsWith('5')) {
+            statusData = {
+                status: 'Готов к выдаче',
+                description: 'Ваш заказ готов! Вы можете забрать его по адресу: г. Москва, ул. Примерная, д. 15, офис 304.',
+                updated_at: '2026-10-06 14:30',
+                color: 'green'
+            };
+        } else if (orderNumber === '404' || num.endsWith('4')) {
+            statusData = {
+                status: 'Ожидает запчасть',
+                description: 'Запчасть заказана у поставщика. Ожидаемое поступление — 2–3 рабочих дня.',
+                updated_at: '2026-10-05 10:15',
+                color: 'yellow'
+            };
+        } else if (orderNumber === '500' || num.endsWith('0')) {
+            statusData = {
+                status: 'В работе',
+                description: 'Мастер приступил к ремонту. Средний срок выполнения — 1–2 рабочих дня.',
+                updated_at: '2026-10-06 09:00',
+                color: 'yellow'
+            };
+        } else if (orderNumber === '000' || num.endsWith('9')) {
+            statusData = {
+                status: 'Не найден',
+                description: 'Заказ с таким номером не найден. Проверьте номер или свяжитесь с оператором.',
+                updated_at: '2026-10-06 08:00',
+                color: 'red'
+            };
+        } else {
+            // По умолчанию — "Принят"
+            statusData = {
+                status: 'Принят',
+                description: 'Заявка принята и зарегистрирована. Мастер свяжется с вами для уточнения деталей.',
+                updated_at: '2026-10-06 12:00',
+                color: 'green'
+            };
+        }
+
+        const badgeClass = statusData.color === 'green' ? 'badge-green' :
+                          statusData.color === 'yellow' ? 'badge-yellow' : 'badge-red';
+
+        resultDiv.innerHTML = `
+            <div class="status-row">
+                <span class="status-badge ${badgeClass}">${statusData.status}</span>
+            </div>
+            <p class="status-desc">${statusData.description}</p>
+            <p class="status-date">Обновлено: ${statusData.updated_at}</p>
+        `;
+        resultDiv.classList.add('show');
+    }, 800); // имитация задержки сети
+}
+
+/* ============================================================
+   УВЕДОМЛЕНИЯ
+   ============================================================ */
+function showToast(message, type = 'success') {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.className = 'toast ' + type;
+    toast.classList.add('show');
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3500);
+}
+
+/* ============================================================
+   СКРОЛЛ
+   ============================================================ */
+function scrollToTop(e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ============================================================
+   ЗАКРЫТИЕ ПО ESC
+   ============================================================ */
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAll();
+});
+
+/* ============================================================
+   ИМИТАЦИЯ ЗАГРУЗКИ ВИДЕО С YOUTUBE API (в реальном проекте)
+   ============================================================
+   В реальном проекте здесь был бы fetch к вашему backend,
+   который бы обращался к YouTube Data API v3 с ключом,
+   кэшировал бы результаты (TTL 1 час) и отдавал бы JSON.
+   Сейчас используется статический массив VIDEOS для демо.
+   ============================================================ */
+</script>
+</body>
+</html>
